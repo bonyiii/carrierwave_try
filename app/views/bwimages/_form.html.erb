@@ -1,0 +1,26 @@
+<%= form_for(@bwimage, :html => { :multipart => true }) do |f| %>
+  <% if @bwimage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bwimage.errors.count, "error") %> prohibited this bwimage from being saved:</h2>
+
+      <ul>
+      <% @bwimage.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

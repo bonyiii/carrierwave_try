@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @bwimage.name %>
+</p>
+
+<p>
+<b>Avatar:</b>
+  <%= image_tag @bwimage.avatar_url.to_s %>
+</p>
+
+<%= link_to 'Edit', edit_bwimage_path(@bwimage) %> |
+<%= link_to 'Back', bwimages_path %>
