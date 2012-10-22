@@ -1,8 +1,13 @@
 class CreateBwimages < ActiveRecord::Migration
   def change
     create_table :bwimages do |t|
-      t.string :name
-      t.string :avatar
+      t.string :title
+      t.string :photo
+      t.string :camera
+      t.date :date
+      t.string :author
+      t.string :filename
+      t.string :status
 
       t.timestamps
     end

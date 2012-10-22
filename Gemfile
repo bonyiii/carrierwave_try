@@ -40,4 +40,8 @@ gem 'debugger'
 gem 'carrierwave'
 gem 'spine-rails'
 gem 'mini_magick'
+gem 'resque', require: 'resque/server'
 
+group :test do
+  gem 'rspec-rails'
+end

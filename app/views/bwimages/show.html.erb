@@ -2,12 +2,12 @@
 
 <p>
   <b>Name:</b>
-  <%= @bwimage.name %>
+  <%= @bwimage.title %>
 </p>
 
 <p>
-<b>Avatar:</b>
-  <%= image_tag @bwimage.avatar_url.to_s %>
+<b>Photo:</b>
+  <%= image_tag @bwimage.photo_url.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_bwimage_path(@bwimage) %> |

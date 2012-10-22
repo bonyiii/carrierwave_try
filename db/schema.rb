@@ -14,8 +14,13 @@
 ActiveRecord::Schema.define(:version => 20121010200257) do
 
   create_table "bwimages", :force => true do |t|
-    t.string   "name"
-    t.string   "avatar"
+    t.string   "title"
+    t.string   "photo"
+    t.string   "camera"
+    t.date     "date"
+    t.string   "author"
+    t.string   "filename"
+    t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

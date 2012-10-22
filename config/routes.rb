@@ -1,6 +1,13 @@
 RailsCarrierwave::Application.routes.draw do
   resources :bwimages
 
+  namespace :api do
+    resources :bwimages
+  end
+
+  root to: 'bwimages#index'
+  mount Resque::Server, :at => '/resque'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

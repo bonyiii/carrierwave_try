@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Avatar</th>
+    <th>Title</th>
+    <th>Photo</th>
     <th>Grayscale</th>
     <th></th>
     <th></th>
@@ -12,9 +12,9 @@
 
 <% @bwimages.each do |bwimage| %>
   <tr>
-    <td><%= bwimage.name %></td>
-    <td><%= image_tag bwimage.avatar_url(:small) %></td>
-    <td><%= image_tag bwimage.avatar_url(:gray) %></td>
+    <td><%= bwimage.title %></td>
+    <td><%= image_tag bwimage.photo_url(:small) %></td>
+    <td><%= image_tag bwimage.photo_url(:gray) %></td>
     <td><%= link_to 'Show', bwimage %></td>
     <td><%= link_to 'Edit', edit_bwimage_path(bwimage) %></td>
     <td><%= link_to 'Destroy', bwimage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
