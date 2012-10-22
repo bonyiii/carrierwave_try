@@ -32,7 +32,7 @@ class Api::BwimagesController < ApplicationController
         format.json { head 200 }
         # format.json { render json: @bwimage, status: :created, location: @bwimage }
       else
-        format.html { render action: "new" }
+        format.html { render json: @bwimage.errors, status: :unprocessable_entity }
         format.json { render json: @bwimage.errors, status: :unprocessable_entity }
       end
     end

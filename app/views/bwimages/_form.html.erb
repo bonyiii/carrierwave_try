@@ -16,8 +16,20 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :remote_photo %><br />
-    <%= f.text_field :remote_photo_url %>
+    <%= f.label :author %><br />
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :camera %><br />
+    <%= f.text_field :camera %>
+  </div>
+  <div class="field">
+    <%= f.label :taken_at %><br />
+    <%= f.date_select :taken_at %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
   </div>
   <div class="field">
     <%= f.label :photo %><br />
