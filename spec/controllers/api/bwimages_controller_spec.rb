@@ -6,14 +6,28 @@ describe Api::BwimagesController do
 
     let(:file) { Base64.encode64(File.read(File.join(Rails.root, "spec", "fixtures", "image.jpg"))) }
 
-    it 'should crop and grayscale the image and have a processed status afterwards' do
+    it 'base64' do
       image = {
         title: "Picture title",
         file: file,
         filename: "test_file.jpg"
       }
 
-      post :create, { :bwimage => image, :format => :json }
+      post :create, { :bwimage => image.to_json, :format => :json }
+
+      Base64.encode64(File.read(assigns(:bwimage).photo.path)).should == file
+      response.should be_success
+    end
+
+    it 'url' do
+      image = {
+        title: "Picture title",
+        url: "http://farm9.staticflickr.com/8319/7992673887_a882d4e269_c.jpg",
+        filename: "test_file.jpg"
+      }
+
+      post :create, { :bwimage => image.to_json, :format => :json }
+      assigns(:bwimage).reload
 
       Base64.encode64(File.read(assigns(:bwimage).photo.path)).should == file
       response.should be_success

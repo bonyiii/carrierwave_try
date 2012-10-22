@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121010200257) do
     t.string   "author"
     t.string   "filename"
     t.string   "status"
+    t.string   "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
