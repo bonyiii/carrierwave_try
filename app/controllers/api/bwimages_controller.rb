@@ -14,8 +14,8 @@ class Api::BwimagesController < ApplicationController
 
       #create a new uploaded file
       uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, 
-                                                             :filename => data["filename"], 
-                                                             :original_filename => data["filename"])
+                                                             :filename => data["filename"] || SecureRandom.hex(4), 
+                                                             :original_filename => data["filename"] || SecureRandom.hex(4))
       data.delete("file")
       data["photo"] = uploaded_file
     end

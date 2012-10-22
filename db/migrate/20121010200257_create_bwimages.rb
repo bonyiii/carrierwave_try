@@ -4,7 +4,7 @@ class CreateBwimages < ActiveRecord::Migration
       t.string :title
       t.string :photo
       t.string :camera
-      t.date   :date
+      t.date   :taken_at
       t.string :author
       t.string :filename
       t.string :status

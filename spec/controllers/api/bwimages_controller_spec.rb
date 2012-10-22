@@ -6,32 +6,69 @@ describe Api::BwimagesController do
 
     let(:file) { Base64.encode64(File.read(File.join(Rails.root, "spec", "fixtures", "image.jpg"))) }
 
-    it 'base64' do
-      image = {
-        title: "Picture title",
-        file: file,
-        filename: "test_file.jpg"
-      }
+    describe 'success' do
 
-      post :create, { :bwimage => image.to_json, :format => :json }
+      it 'base64' do
+        image = {
+          title: "Picture title",
+          author: "John Doe",
+          camera: "Nikon",
+          taken_at: Time.now - 2.days,
+          file: file,
+          filename: "test_file.jpg"
+        }
 
-      Base64.encode64(File.read(assigns(:bwimage).photo.path)).should == file
-      response.should be_success
-    end
+        post :create, { :bwimage => image.to_json, :format => :json }
 
-    it 'url' do
-      image = {
-        title: "Picture title",
-        url: "http://farm9.staticflickr.com/8319/7992673887_a882d4e269_c.jpg",
-        filename: "test_file.jpg"
-      }
+        Base64.encode64(File.read(assigns(:bwimage).photo.path)).should == file
+        assigns(:bwimage).author.should == "John Doe"
+        response.should be_success
+      end
 
-      post :create, { :bwimage => image.to_json, :format => :json }
-      assigns(:bwimage).reload
+      it 'url' do
+        image = {
+          title: "Picture title",
+          author: "John Doe",
+          camera: "Nikon",
+          taken_at: Time.now - 2.days,
+          url: "http://farm9.staticflickr.com/8319/7992673887_a882d4e269_c.jpg"
+        }
 
-      Base64.encode64(File.read(assigns(:bwimage).photo.path)).should == file
-      response.should be_success
-    end
+        post :create, { :bwimage => image.to_json, :format => :json }
+        assigns(:bwimage).reload
 
-  end # base64
+        Base64.encode64(File.read(assigns(:bwimage).photo.path)).should == file
+        response.should be_success
+      end
+
+    end # success
+
+    describe 'fail' do
+
+      it 'base64' do
+        image = {
+          file: file,
+        }
+
+        post :create, { :bwimage => image.to_json, :format => :json }
+
+        assigns(:bwimage).errors.should include(:title)
+        response.should_not be_success 
+      end
+
+      it 'url' do
+        image = {
+          url: "http://farm9.staticflickr.com/8319/7992673887_a882d4e269_c.jpg"
+        }
+
+        post :create, { :bwimage => image.to_json, :format => :json }
+
+        assigns(:bwimage).errors.should include(:title)
+        response.should_not be_success 
+      end
+
+    end # fail
+
+  end # create
+
 end

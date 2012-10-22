@@ -1,10 +1,16 @@
 class Bwimage < ActiveRecord::Base
-  attr_accessible :title, :photo, :photo_cache, :filename, :original_filename, :remote_photo_url, :url
+  attr_accessible :photo, :photo_cache, :url, :filename, :original_filename,
+                  :title, :author, :taken_at, :camera
 
   attr_accessor :original_filename
   mount_uploader :photo, PhotoUploader
 
   after_create :process_photo
+
+  validates :title, presence: true
+  validates :author, presence: true
+  validates :camera, presence: true
+  validates :taken_at, presence: true
 
   # http://code.dblock.org/carrierwave-delayjob-processing-of-selected-versions
   def recreate_delayed_versions!
