@@ -67,6 +67,17 @@ describe Api::BwimagesController do
         response.should_not be_success 
       end
 
+      it 'not json' do
+        image = {
+          url: "http://farm9.staticflickr.com/8319/7992673887_a882d4e269_c.jpg"
+        }
+
+        post :create, { :bwimage => image, :format => :json }
+
+        assigns(:bwimage).errors.should include(:title)
+        response.should_not be_success 
+      end
+
     end # fail
 
   end # create
