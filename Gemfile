@@ -37,6 +37,12 @@ gem 'jquery-rails'
 # To use debugger
 gem 'debugger'
 
+gem 'thin'
+gem 'faye'
+gem 'eventmachine'
+
+gem 'will_paginate'
+
 gem 'carrierwave'
 gem 'spine-rails'
 gem 'mini_magick'
