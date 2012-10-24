@@ -1,3 +1,5 @@
+Faye::WebSocket.load_adapter('thin')
+
 module Rack
   class Lint
     def call(env = nil)

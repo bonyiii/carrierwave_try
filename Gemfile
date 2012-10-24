@@ -39,6 +39,7 @@ gem 'debugger'
 
 gem 'thin'
 gem 'faye'
+gem 'faye-websocket'
 gem 'eventmachine'
 
 gem 'will_paginate'

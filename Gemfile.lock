@@ -185,6 +185,7 @@ DEPENDENCIES
   debugger
   eventmachine
   faye
+  faye-websocket
   jquery-rails
   mini_magick
   rails (= 3.2.8)
