@@ -3,6 +3,7 @@ class Bwimage < ActiveRecord::Base
                   :title, :author, :taken_at, :camera
 
   attr_accessor :original_filename
+
   mount_uploader :photo, PhotoUploader
 
   after_create :process_photo
