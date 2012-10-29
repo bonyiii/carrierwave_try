@@ -7,7 +7,7 @@ window.Client = class Client
   constructor: ->
     @client = new Faye.Client("http://#{window.location.host}/faye")
     @client.subscribe "/photos/updated", (data) ->
-      alert("new photo added")
+      window.app.bwimages.index.add_new(data)
 
 jQuery ->
   window.client = new Client
