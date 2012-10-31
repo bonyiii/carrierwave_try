@@ -7,7 +7,7 @@ class CreateBwimages < ActiveRecord::Migration
       t.date   :taken_at
       t.string :author
       t.string :filename
-      t.string :status
+      t.string :status, default: "draft"
       t.string :url
 
       t.timestamps

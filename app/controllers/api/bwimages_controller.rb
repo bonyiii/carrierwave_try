@@ -28,6 +28,7 @@ class Api::BwimagesController < ApplicationController
 
     respond_to do |format|
       if @bwimage.save
+        @bwimage.process_photo
         FayeClient::photo_added(@bwimage)
         format.html { head 200 }
         format.json { head 200 }

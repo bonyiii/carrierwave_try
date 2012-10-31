@@ -49,6 +49,8 @@ gem 'mini_magick'
 # Background jobs
 gem 'resque', require: 'resque/server'
 
+gem 'aasm'
+
 group :test do
   gem 'rspec-rails'
 end
