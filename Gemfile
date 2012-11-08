@@ -53,6 +53,8 @@ gem 'resque', :require => 'resque/server'
 
 gem 'aasm'
 
+gem 'aasm'
+
 group :test do
   gem 'rspec-rails'
 end
