@@ -5,7 +5,7 @@ class FayeClient
 
   def self.broadcast(channel, data)
     if EM.reactor_running?
-      Rails.logger.debug "EM reactor running broadcasting"
+      Rails.logger.debug "EM reactor running, broadcasting"
       $faye_client.publish channel, data
     end
   end

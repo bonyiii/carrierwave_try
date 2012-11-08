@@ -5,8 +5,13 @@ module BwimageTask
     def self.perform(id, url)
       bwimage = Bwimage.find(id)
       bwimage.remote_photo_url = url
-      bwimage.save
-      bwimage.recreate_delayed_versions!
+      unless bwimage.save
+        bwimage.remote_photo_url = nil
+        bwimage.fail!
+      else
+        bwimage.download!
+        bwimage.process!
+      end
     end
   end
 end

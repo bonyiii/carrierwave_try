@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(:version => 20121010200257) do
     t.date     "taken_at"
     t.string   "author"
     t.string   "filename"
-    t.string   "status"
+    t.string   "status",     :default => "draft"
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
 end

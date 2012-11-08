@@ -6,55 +6,39 @@
   
   <label>
     <span>Title</span>
-    <input 
-      type="text" name="title" 
-      value="<%= @title %>" required
- autofocus>
+    <input type="text" name="title" value="<%= @title %>" required autofocus>
     <br />
   </label>
   
   <label>
     <span>Camera</span>
-    <input 
-      type="text" name="camera" 
-      value="<%= @camera %>" required
->
+    <input type="text" name="camera" value="<%= @camera %>" required>
     <br />
   </label>
   
   <label>
     <span>Taken At</span>
-    <input 
-      type="text" name="taken_at" 
-      value="<%= @taken_at %>" required
->
+    <input type="text" name="taken_at" value="<%= @taken_at %>" required>
     <br />
   </label>
   
   <label>
     <span>Author</span>
-    <input 
-      type="text" name="author" 
-      value="<%= @author %>" required
->
-    <br />
-  </label>
-  
-  <label>
-    <span>Status</span>
-    <input 
-      type="text" name="status" 
-      value="<%= @status %>" required
->
+    <input type="text" name="author" value="<%= @author %>" required>
     <br />
   </label>
   
   <label>
     <span>Url</span>
     <input 
-      type="text" name="url" 
-      value="<%= @url %>" required
->
+      type="text" name="url" value="<%= @url %>">
+    <br />
+  </label>
+
+  <label>
+    <span>Photo</span>
+    <input id="file" type="file" name="file" value="<%= @photo %>">
+    <img id="file_preview">
     <br />
   </label>
   

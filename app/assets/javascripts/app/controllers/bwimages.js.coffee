@@ -10,10 +10,13 @@ class New extends Spine.Controller
   events:
     'click [data-type=back]': 'back'
     'submit form': 'submit'
+    'change #file': 'preview'
     
   constructor: ->
     super
     @active @render
+    # https://developer.mozilla.org/en-US/docs/DOM/FileReader#readAsDataURL%28%29
+    @fr = new FileReader()
     
   render: ->
     @html @view('bwimages/new')
@@ -23,8 +26,18 @@ class New extends Spine.Controller
 
   submit: (e) ->
     e.preventDefault()
-    bwimage = Bwimage.fromForm(e.target).save()
+    bwimage = Bwimage.fromForm(e.target)
+    #http://stackoverflow.com/questions/4665049/json-encode-decode-base64-encode-decode-in-javascript
+    bwimage.file = btoa(@fr.result)
+    bwimage.save()
     @navigate '/bwimages', bwimage.id if bwimage
+
+  preview: ->
+    @fr.onload = (e) ->
+      $('#file_preview').attr('src',e.target.result)
+
+    f = $('#file')[0].files[0]
+    @fr.readAsDataURL(f)
 
 class Edit extends Spine.Controller
   events:
