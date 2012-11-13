@@ -7,4 +7,5 @@
 <p>Taken At: <%= @taken_at %></p>
 <p>Author: <%= @author %></p>
 <p>Status: <%= @status %></p>
-<p>Url: <%= @url %></p>
+<p>Url: <%= @url() %></p>
+<p><img src="<%= @photo?.url %>"></p>

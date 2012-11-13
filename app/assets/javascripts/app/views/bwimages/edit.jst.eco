@@ -5,7 +5,7 @@
 <form>
   
   <label>
-    <span>Title</span>
+    <span data-bind="text: title">Title</span>
     <input 
       type="text" name="title" 
       value="<%= @title %>" required

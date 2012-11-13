@@ -8,13 +8,11 @@ class Bwimage < ActiveRecord::Base
 
   #after_save :process_photo
   before_validation :convert_base64, on: :create
-  #after_save :process_photo
 
   validates :title, presence: true
   validates :author, presence: true
   validates :camera, presence: true
   validates :taken_at, presence: true
-  validates :status, inclusion: { :in => STATUSES }
 
   include AASM
   aasm :column => 'status' do

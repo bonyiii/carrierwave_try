@@ -1,3 +1,17 @@
+rivets.configure
+  adapter:
+    subscribe: (obj, keypath, callback) ->
+      callback.wrapped = (m, v) -> callback(v)
+      obj.bind('change:' + keypath, callback.wrapped)
+    unsubscribe: (obj, keypath, callback) ->
+      obj.unbind('change:' + keypath, callback.wrapped)
+    read: (obj, keypath) ->
+      return obj.attributes()[keypath]
+    publish: (obj, keypath, value) ->
+      obj.updateAttribute(keypath, value)
+rivets.binders.src = (el, value) ->
+  el.src = value if value?
+
 $ = jQuery.sub()
 Bwimage = App.Bwimage
 
@@ -43,6 +57,7 @@ class Edit extends Spine.Controller
   events:
     'click [data-type=back]': 'back'
     'submit form': 'submit'
+    'keyup input[name="title"]': 'changeTitle'
   
   constructor: ->
     super
@@ -64,6 +79,9 @@ class Edit extends Spine.Controller
     @item.fromForm(e.target).save()
     @navigate '/bwimages'
 
+  changeTitle: (e) ->
+    $('span[data-bind="text: title"]').html($(e.target).val())
+
 class Show extends Spine.Controller
   events:
     'click [data-type=edit]': 'edit'
@@ -76,10 +94,12 @@ class Show extends Spine.Controller
 
   change: (id) ->
     @item = Bwimage.find(id)
+    rivets.bind($('#show'), { bwimage: @item })
     @render()
 
   render: ->
-    @html @view('bwimages/show')(@item)
+    #@html @view('bwimages/show')(@item)
+    @html $('#show')
 
   edit: ->
     @navigate '/bwimages', @item.id, 'edit'
@@ -102,8 +122,11 @@ class Index extends Spine.Controller
     Bwimage.fetch()
     
   render: =>
-    bwimages = Bwimage.all()
-    @html @view('bwimages/index')(bwimages: bwimages)
+    #bwimages = Bwimage.all()
+    #@html @view('bwimages/index')(bwimages: bwimages)
+    
+    rivets.bind($('#list'), { bwimages: Bwimage.all() })
+    @html $('#list')
     
   edit: (e) ->
     item = $(e.target).item()

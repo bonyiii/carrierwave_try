@@ -37,8 +37,7 @@ class BwimagesController < ApplicationController
     @bwimage = Bwimage.find(params[:id])
   end
 
-  # POST /bwimages
-  # POST /bwimages.json
+  # POST /bwimages # POST /bwimages.json
   def create
     @bwimage = Bwimage.new(params[:bwimage])
 

@@ -1,8 +1,8 @@
 RailsCarrierwave::Application.routes.draw do
-  resources :bwimages
+  resources :bwimages, except: :create
 
   namespace :api do
-    resources :bwimages
+    resources :bwimages, only: [ :create, :index ]
   end
 
   root to: 'bwimages#index'
