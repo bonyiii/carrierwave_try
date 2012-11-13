@@ -1,17 +1,3 @@
-rivets.configure
-  adapter:
-    subscribe: (obj, keypath, callback) ->
-      callback.wrapped = (m, v) -> callback(v)
-      obj.bind('change:' + keypath, callback.wrapped)
-    unsubscribe: (obj, keypath, callback) ->
-      obj.unbind('change:' + keypath, callback.wrapped)
-    read: (obj, keypath) ->
-      return obj.attributes()[keypath]
-    publish: (obj, keypath, value) ->
-      obj.updateAttribute(keypath, value)
-rivets.binders.src = (el, value) ->
-  el.src = value if value?
-
 $ = jQuery.sub()
 Bwimage = App.Bwimage
 
@@ -94,12 +80,10 @@ class Show extends Spine.Controller
 
   change: (id) ->
     @item = Bwimage.find(id)
-    rivets.bind($('#show'), { bwimage: @item })
     @render()
 
   render: ->
-    #@html @view('bwimages/show')(@item)
-    @html $('#show')
+    @html @view('bwimages/show')(@item)
 
   edit: ->
     @navigate '/bwimages', @item.id, 'edit'
@@ -122,11 +106,13 @@ class Index extends Spine.Controller
     Bwimage.fetch()
     
   render: =>
-    #bwimages = Bwimage.all()
-    #@html @view('bwimages/index')(bwimages: bwimages)
-    
-    rivets.bind($('#list'), { bwimages: Bwimage.all() })
-    @html $('#list')
+    bwimages = Bwimage.all()
+    @html @view('bwimages/index')(bwimages: bwimages)
+    #window.viewModel = new ViewModel()
+    #ko.applyBindings(window.viewModel)
+    window.element = App.Bwimage.first()
+    window.element.koBinds()
+    ko.applyBindings(window.element)
     
   edit: (e) ->
     item = $(e.target).item()

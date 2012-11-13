@@ -6,3 +6,8 @@ class App.Bwimage extends Spine.Model
 
   url: ->
     "/api/bwimages/#{@id}"
+
+  koBinds: ->
+    @titleObs = ko.observable(@title)
+    @cameraObs = ko.observable(@camera)
+    @fullName = ko.computed => "#{@title} and #{@camera}"

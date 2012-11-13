@@ -23,10 +23,16 @@
 <div id="list">
   <div data-each-bwimage="bwimages">
     <div class="item" data-id="bwimage.id">
-      <a data-text="bwimage.title" data-type="show"></a>
+      <a data-text="bwimage:title" data-type="show"></a>
 
       <a data-type="edit">Edit</a> 
       <a data-type="destroy">Destroy</a>
     </div>
   </div>
 </div>
+
+The ko title is <span data-bind="text: title"></span>
+<br />
+The ko camera is <span data-bind="text: camera"></span>
+<br />
+The ko title and camera is <span data-bind="text: fullName"></span>
