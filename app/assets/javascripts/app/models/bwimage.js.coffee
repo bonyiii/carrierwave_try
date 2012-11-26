@@ -10,6 +10,7 @@ class App.Bwimage extends Spine.Model
   koBinds: ->
     @titleObs = ko.observable(@title)
     @cameraObs = ko.observable(@camera)
+    @author = ko.observable(@author)
     @fullName = ko.computed
       read: -> "#{@title} #{@camera}"
       write: (value) ->
@@ -19,4 +20,15 @@ class App.Bwimage extends Spine.Model
           #@updateAttribute('camera',value.substring(lastSpacePos + 1))
           @title = value.substring(0, lastSpacePos)
           @camera = value.substring(lastSpacePos + 1)
+          @save()
       owner: @
+
+    @formattedPrice = ko.computed
+      read: ->
+        @author(2.03) if typeof @author() == 'string'
+        "$#{@author().toFixed(2)}"
+      write: (value) ->
+        value = parseFloat(value.replace(/[^\.\d]/g,''))
+        @author(if isNaN(value) then 0 else value)
+      owner: @
+

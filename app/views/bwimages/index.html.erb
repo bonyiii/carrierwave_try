@@ -31,9 +31,34 @@
   </div>
 </div>
 
+<div id="bwimgs-list">
+<table data-bind="foreach: bwimgs">
+  <tr>
+    <td data-bind="text: title"></td>
+    <td data-bind="text: camera"></td>
+  </tr>
+</table>
+</div>
+
+<div id="element">
 The ko title is <span data-bind="text: title"></span>
 <br />
+<p>Enter bid price: <input data-bind="value: title" /></p>
 The ko camera is <span data-bind="text: camera"></span>
+<br />
+The ko author is <span data-bind="text: author"></span>
 <br />
 The ko title and camera is <span data-bind="text: fullName"></span>
 <h2>Hello, <input data-bind="value: fullName">!</h2>
+<p>Enter bid price: <input data-bind="value: formattedPrice" /></p>
+</div>
+
+<div id="ko">
+The ko firstName is <span data-bind="text: firstName"></span>
+<br />
+The ko lastName is <span data-bind="text: title"></span>
+<br />
+The ko fullName is <span data-bind="text: fullName"></span>
+<br />
+The ko fullName <input data-bind="value: fullName"></span>
+<br />

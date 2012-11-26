@@ -32,6 +32,7 @@ class New extends Spine.Controller
     bwimage.save()
     @navigate '/bwimages', bwimage.id if bwimage
 
+  # Binded to change #file event in events hook (first line of class New)
   preview: ->
     @fr.onload = (e) ->
       $('#file_preview').attr('src',e.target.result)
@@ -107,12 +108,17 @@ class Index extends Spine.Controller
     
   render: =>
     bwimages = Bwimage.all()
-    @html @view('bwimages/index')(bwimages: bwimages)
-    #window.viewModel = new ViewModel()
-    #ko.applyBindings(window.viewModel)
+    #@html @view('bwimages/index')(bwimages: bwimages)
+    window.bwimgs = ko.observableArray(Bwimage.all())
+    ko.applyBindings(window.bwimgs, $('bwimgs-list')[0])
+
+    window.viewModel = new ViewModel()
+    ko.applyBindings(window.viewModel, $('#ko')[0])
+
     window.element = App.Bwimage.first()
+    # Added by me to active knockoutjs bindings
     window.element.koBinds()
-    ko.applyBindings(window.element)
+    ko.applyBindings(window.element, $('#element')[0])
     
   edit: (e) ->
     item = $(e.target).item()
